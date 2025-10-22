@@ -4,6 +4,7 @@ import {VehicleListStateInterface} from '../models/vehicle-list-state.interface'
 export const VEHICLE_FEATURE_KEY = 'vehicles';
 
 export interface VehicleState {
+  key: string;
   list: Vehicle[];
   selectedVehicle: Vehicle | null;
   listState: VehicleListStateInterface;
@@ -12,6 +13,7 @@ export interface VehicleState {
 }
 
 export const initialVehicleState: VehicleState = {
+  key: VEHICLE_FEATURE_KEY,
   list: [],
   listState: {
     sortOrder: 'asc'
