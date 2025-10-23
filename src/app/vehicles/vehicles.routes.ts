@@ -18,6 +18,7 @@ export const VEHICLE_FEATURE_ROUTES: Routes = [
     component: VehiclesList,
     providers: [
       provideState<VehicleState>({
+        // @ts-ignore
         key: VEHICLE_FEATURE_KEY,
         reducer: vehicleReducer,
       }),

@@ -1,1 +1,42 @@
-<p>vehicle-details works!</p>
+<div class="container">
+  <div class="header">
+    <h1 class="header-name">Vehicle details</h1>
+    <button matButton [routerLink]="['../', 'list']"><mat-icon>arrow_back</mat-icon> Back to list</button>
+  </div>
+
+  @if (isLoading()) {
+    <div class="loading-block">
+      <mat-progress-spinner
+        [mode]="'indeterminate'"
+        [diameter]="20">
+      </mat-progress-spinner>
+      <p>Loading details...</p>
+    </div>
+  } @else {
+    @if (!!vehicleDetails()) {
+      <div class="details">
+        <div class="vehicle-image">
+          <img src="https://picsum.photos/200/200?random=car">
+        </div>
+        <div class="left-block">
+          <div class="prop"><span class="prop-name">Name:</span><span>{{vehicleDetails()?.name}}</span></div>
+          <div class="prop"><span class="prop-name">Manufacturer:</span><span>{{vehicleDetails()?.manufacturer}}</span></div>
+          <div class="prop"><span class="prop-name">Model:</span><span>{{vehicleDetails()?.model}}</span></div>
+          <div class="prop"><span class="prop-name">Fuel:</span><span>{{vehicleDetails()?.fuel}}</span></div>
+        </div>
+        <div class="right-block">
+          <div class="prop"><span class="prop-name">Type:</span><span>{{vehicleDetails()?.type}}</span></div>
+          <div class="prop"><span class="prop-name">VIN:</span><span>{{vehicleDetails()?.vin}}</span></div>
+          @if (!!vehicleDetails()?.color) {
+            <div class="prop"><span class="prop-name">Color:</span><span>{{vehicleDetails()?.color}}</span></div>
+          }
+          @if (!!vehicleDetails()?.mileage) {
+            <div class="prop"><span class="prop-name">Color:</span><span>{{vehicleDetails()?.mileage}}</span></div>
+          }
+        </div>
+      </div>
+    } @else {
+      <p>Data not found.</p>
+    }
+  }
+</div>

@@ -1,0 +1,20 @@
+.dialog-content {
+  display: flex;
+  justify-content: space-between;
+
+  .left, .right {
+    margin: 20px;
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.dialog-title {
+  background-color: #2d6caf;
+  span {
+    color: white;
+  }
+}

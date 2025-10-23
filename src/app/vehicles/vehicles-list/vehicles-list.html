@@ -1,4 +1,71 @@
 <div class="container">
-  <h1>Vehicles list</h1>
+  <div class="header">
+    <h1 class="header-name">Vehicles list</h1>
+    <div>Total: {{vehicles().length || 0}}</div>
+    <button matButton="tonal" type="button" (click)="openAddEditDialog()"><mat-icon>add</mat-icon> Add new vehicle</button>
+  </div>
+  <div class="list-controls">
+    <form class="list-form" [formGroup]="form">
+      <div>
+        <div class="group-name">List search: </div>
+        <mat-form-field appearance="outline" class="margin-right">
+          <mat-label>Search</mat-label>
+          <input matInput type="text" formControlName="searchString">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Search by field:</mat-label>
+          <mat-select formControlName="filterBy">
+            @for (option of selectOptions; track option.value) {
+              <mat-option [value]="option.value">{{option.label}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <div class="group-name">List filtering: </div>
+        <mat-form-field appearance="outline" class="margin-right">
+          <mat-label>Sort order:</mat-label>
+          <mat-select formControlName="sortOrder">
+            @for (sortOrder of sortOrders; track sortOrder) {
+              <mat-option [value]="sortOrder">{{ sortOrder }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Sort by field:</mat-label>
+          <mat-select formControlName="sortBy">
+            @for (option of selectOptions; track option.value) {
+              <mat-option [value]="option.value">{{option.label}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </form>
 
+  </div>
+
+  <div class="list">
+    @if (isLoading()) {
+      <div class="loading-block">
+        <mat-progress-spinner
+          [mode]="'indeterminate'"
+          [diameter]="20">
+        </mat-progress-spinner>
+        <p>Loading vehicles...</p>
+      </div>
+    } @else {
+      @if (!!vehicles().length) {
+          @for (vehicle of vehicles(); track vehicle.id) {
+            <app-list-item [item]="vehicle"
+                           (editItem)="openAddEditDialog($event)"
+                           (deleteItem)="onDeleteItem($event)"></app-list-item>
+          }
+      } @else {
+        <div class="no-items-found">
+          <span>No vehicles found.</span>
+          <button matButton type="button" (click)="openAddEditDialog()"><mat-icon>add</mat-icon> Add new vehicle</button>
+        </div>
+      }
+    }
+  </div>
 </div>

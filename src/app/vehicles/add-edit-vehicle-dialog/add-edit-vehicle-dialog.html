@@ -1,0 +1,55 @@
+<form
+  (submit)="submitForm()"
+  [formGroup]="form">
+  <div mat-dialog-title class="dialog-title">
+    <span>{{ isEditMode ? "Edit vehicle" : "Add vehicle"  }}</span>
+  </div>
+  <div matDialogContent class="dialog-content">
+    <div class="left">
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Manufacturer</mat-label>
+        <input matInput type="text" formControlName="manufacturer">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Model</mat-label>
+        <input matInput type="text" formControlName="model">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Fuel</mat-label>
+        <input matInput type="text" formControlName="fuel">
+      </mat-form-field>
+    </div>
+    <div class="right">
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Type</mat-label>
+        <input matInput type="text" formControlName="type">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>VIN</mat-label>
+        <input matInput type="text" formControlName="vin">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Color</mat-label>
+        <input matInput type="text" formControlName="color">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="margin-right">
+        <mat-label>Mileage</mat-label>
+        <input matInput type="number" formControlName="mileage">
+      </mat-form-field>
+    </div>
+  </div>
+  <div matDialogActions>
+    <button mat-stroked-button type="button" [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+      {{ "Cancel" }}
+    </button>
+    <button mat-stroked-button color="accent" type="submit" [disabled]="form.invalid">
+      <mat-icon>check</mat-icon>
+      {{ isEditMode ? "Save changes" : "Add vehicle" }}
+    </button>
+  </div>
+</form>

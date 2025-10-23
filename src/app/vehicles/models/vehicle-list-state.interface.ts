@@ -1,12 +1,9 @@
 export interface VehicleListStateInterface {
-  sortOrder?: ListSortOrder;
+  sortOrder: ListSortOrder;
+  sortBy: FilterByProp;
   searchString?: string;
-  filterBy?: ListFilteringStateInterface;
-}
-
-export interface ListFilteringStateInterface {
-  filterByProp?: string;
-  filterValue?: string;
+  filterBy: FilterByProp;
 }
 
 export type ListSortOrder = 'asc' | 'desc';
+export type FilterByProp = 'name' | 'manufacturer' | 'model';

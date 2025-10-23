@@ -1,0 +1,19 @@
+<div class="list-item" [routerLink]="['../', item?.id]">
+  <div>
+    <span>-</span>
+    <span class="prop-name">Vehicle name: </span><span>{{ item?.name }}</span>
+    <span class="prop-name">Manufacturer: </span><span>{{ item?.manufacturer }}</span>
+    <span class="prop-name">Model: </span><span>{{ item?.model }}</span>
+    @if (!!item?.mileage) {
+      <span class="prop-name">Mileage: </span><span>{{ item?.mileage }}</span>
+    }
+  </div>
+  <div class="vehicle-actions">
+    <button matMiniFab (click)="$event.stopPropagation(); editItem?.emit(item)" type="button" [matTooltip]="'Edit'">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button matMiniFab (click)="$event.stopPropagation(); deleteItem?.emit(item)" type="button" [matTooltip]="'Delete'">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>

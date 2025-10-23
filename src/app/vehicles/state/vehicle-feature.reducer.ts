@@ -46,6 +46,32 @@ export const vehicleReducer = createReducer(
     selectedVehicle: null,
   })),
 
+  on(VehicleActions.updateVehicleListState, (state, { listState }) => ({
+    ...state,
+    listState: {
+      ...state.listState,
+      ...listState
+    }
+  })),
+
+  on(VehicleActions.addVehicle, (state) => ({
+    ...state,
+    error: null,
+  })),
+
+  on(VehicleActions.addVehicleSuccess, (state, { vehicle }) => ({
+    ...state,
+    list: [...state.list, vehicle],
+    isLoading: false,
+    error: null,
+  })),
+
+  on(VehicleActions.addVehicleFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error: error,
+  })),
+
   on(VehicleActions.clearSelectedVehicle, (state) => ({
     ...state,
     selectedVehicle: null,

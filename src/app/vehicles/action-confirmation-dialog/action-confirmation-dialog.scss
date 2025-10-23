@@ -1,0 +1,21 @@
+.dialog-title {
+  background-color: #2d6caf;
+  span {
+    color: white;
+  }
+}
+
+.dialog-content {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  mat-icon {
+    color: red;
+    margin-right: 20px;
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+  }
+}

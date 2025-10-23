@@ -1,5 +1,7 @@
 import {createActionGroup, emptyProps, props} from '@ngrx/store';
+
 import {Vehicle} from '../models/vehicle.interface';
+import {VehicleListStateInterface} from '../models/vehicle-list-state.interface';
 
 export const VehicleActions = createActionGroup({
   source: 'Vehicle',
@@ -13,6 +15,7 @@ export const VehicleActions = createActionGroup({
     'Add Vehicle': props<{ vehicle: Vehicle }>(),
     'Add Vehicle Success': props<{ vehicle: Vehicle }>(),
     'Add Vehicle Failure': props<{ error: string }>(),
+    'Update Vehicle List State': props<{ listState: VehicleListStateInterface }>(),
     'Clear Vehicle List': emptyProps(),
     'Clear Selected Vehicle': emptyProps(),
   },
