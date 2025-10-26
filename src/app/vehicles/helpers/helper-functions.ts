@@ -15,7 +15,7 @@ export function filterByUniqueId<T extends Record<string, any>>(array: T[], key:
 
 export function filterById<T extends Record<string, any>>(array: T[], filterSettings: VehicleListStateInterface) {
   return array.filter((item: T) => {
-    return item[(filterSettings.filterBy || '')].toLowerCase().includes(filterSettings.searchString);
+    return item[(filterSettings.filterBy || '')].toLowerCase().includes(filterSettings.searchString?.toLowerCase());
   })
 }
 

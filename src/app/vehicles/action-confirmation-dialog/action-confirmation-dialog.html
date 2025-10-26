@@ -1,17 +1,19 @@
 <div mat-dialog-title class="dialog-title">
-  <span>{{ "Action confirmation" }}</span>
+  <span>{{ dialogHeaderText }}</span>
 </div>
 <div matDialogContent class="dialog-content">
-  <mat-icon class="mat-icon-large">report_problem</mat-icon><span>{{data.confirmationText}}</span>
+  <span>{{data.confirmationText}}</span>
 </div>
 <div matDialogActions>
-  <button mat-stroked-button type="button" [mat-dialog-close]="false">
-    <mat-icon>close</mat-icon>
-    {{ "Cancel" }}
-  </button>
+  @if (shouldShowCancelButton) {
+    <button mat-button type="button" [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon>
+      {{ cancelButtonText }}
+    </button>
+  }
   <button mat-stroked-button color="accent" [mat-dialog-close]="true">
-    <mat-icon>delete</mat-icon>
-    {{ "Delete" }}
+    <mat-icon>check</mat-icon>
+    {{ confirmButtonText }}
   </button>
 </div>
 

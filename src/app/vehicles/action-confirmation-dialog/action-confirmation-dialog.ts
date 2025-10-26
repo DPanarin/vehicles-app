@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions, MatDialogClose,
@@ -14,6 +14,10 @@ import {ReactiveFormsModule} from '@angular/forms';
 
 export interface ActionConfirmationDialogData {
   confirmationText: string;
+  confirmButtonText: string;
+  cancelButtonText: string;
+  shouldShowCancelButton: boolean;
+  dialogHeaderText: string;
 }
 
 @Component({
@@ -34,9 +38,20 @@ export interface ActionConfirmationDialogData {
   templateUrl: './action-confirmation-dialog.html',
   styleUrl: './action-confirmation-dialog.scss'
 })
-export class ActionConfirmationDialog {
+export class ActionConfirmationDialog implements OnInit {
   readonly data: ActionConfirmationDialogData = inject(MAT_DIALOG_DATA);
   dialogRef = inject(MatDialogRef);
 
+  confirmButtonText = 'Ok';
+  cancelButtonText = 'Cancel';
+  dialogHeaderText: string = 'Alert';
+  shouldShowCancelButton = false;
 
+
+  ngOnInit() {
+    this.confirmButtonText = this.data.confirmButtonText || this.confirmButtonText;
+    this.cancelButtonText = this.data.cancelButtonText || this.cancelButtonText;
+    this.shouldShowCancelButton =  this.data.shouldShowCancelButton;
+    this.dialogHeaderText = this.data.dialogHeaderText || this.dialogHeaderText;
+  }
 }

@@ -16,13 +16,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {
-  MAT_DIALOG_DATA,
   MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
 } from '@angular/material/dialog';
 import {AddEditVehicleDialog} from '../add-edit-vehicle-dialog/add-edit-vehicle-dialog';
 import {ActionConfirmationDialog} from '../action-confirmation-dialog/action-confirmation-dialog';
@@ -108,6 +102,14 @@ export class VehiclesList implements OnInit{
   }
 
   onDeleteItem(vehicle: Vehicle) {
-    this.dialog.open(ActionConfirmationDialog, { data: { confirmationText: 'Are you sure you want to delete this vehicle?' } });
+    this.dialog.open(ActionConfirmationDialog, {
+      data: {
+        confirmationText: 'Are you sure you want to delete this vehicle?',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel',
+        dialogHeaderText: 'Action confirmation',
+        shouldShowCancelButton: true
+      }
+    });
   }
 }
